@@ -2,7 +2,7 @@
 
 A reference board inside Blender. Drop, paste or import pictures onto a board in the 3D View sidebar, arrange them, and keep them beside your model while you work.
 
-![A tidied Pinvas board of reference pictures in Blender's 3D View sidebar](https://docs.oebs-studios.com/pinvas-free/assets/board-tidy-hero.png)
+![A tidied Pinvas board of reference pictures in Blender's 3D View sidebar](https://docs.oebs-studios.com/pinvas/free/assets/board-tidy-hero.png)
 
 ## What it does
 
@@ -38,7 +38,7 @@ Scroll to zoom and middle-drag to pan. Keys act only while the mouse is over the
 
 ## Help
 
-- [User guide](https://docs.oebs-studios.com/pinvas-free/)
+- [User guide](https://docs.oebs-studios.com/pinvas/free/)
 - [Ask a question or report a problem](https://oebs-studios.com/support/pinvas)
 - [Release notes](https://github.com/OEBS-OVER-ENGINEERED-BLENDER-SOLUTIONS/Pinvas/releases)
 
