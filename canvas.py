@@ -531,6 +531,14 @@ class Canvas(Host):
         room = right - title_x - 6 * k
         label = draw.fit_text(name, 12 * k, max(10.0, room - 14 * k))
         draw.text(x0 + title_x, y0 + y + bar / 2 - 4 * k, label, 12 * k, TEXT, room)
+        # Which edition this is, in the middle of the bar; left out when the bar is too narrow for it to clear the board's
+        # name and the buttons.
+        brand = edition.NAMES[edition.EDITION]
+        if name != brand:
+            brand_w = draw.text_width(brand, 12 * k)
+            left = (w - brand_w) / 2
+            if left > title_x + draw.text_width(label, 12 * k) + 22 * k and left + brand_w < right - 8 * k:
+                draw.text(x0 + left, y0 + y + bar / 2 - 4 * k, brand, 12 * k, TEXT)
 
     def tip_box(self, tip, w, h, k):
         """Where a tip goes and how it breaks into lines: (x, y, width, height, [lines]) in canvas pixels. A bar button's tip

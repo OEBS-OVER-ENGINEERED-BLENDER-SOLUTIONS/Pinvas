@@ -1,11 +1,12 @@
-"""The one line the free edition has about Pro: "Get Pinvas Pro", last in the board's right-click menu."""
+"""Where the free edition offers Pro: "Get Pinvas Pro", last in the board's right-click menu and in the add-on's
+Preferences. Both open Pinvas Pro on Superhive."""
 import bpy
 
-URL = "https://docs.oebs-studios.com/pinvas"      # the Pinvas Pro guide, until Pro has a page of its own to sell from
+URL = "https://superhivemarket.com/products/pinvas-pro"
 
 
 class PINVAS_OT_get_pro(bpy.types.Operator):
-    """Open the Pinvas Pro page in your web browser"""
+    """Open Pinvas Pro on Superhive in your web browser"""
     bl_idname = "pinvas.get_pro"
     bl_label = "Get Pinvas Pro"
     bl_options = {'INTERNAL'}
@@ -15,7 +16,14 @@ class PINVAS_OT_get_pro(bpy.types.Operator):
         return {'FINISHED'}
 
 
-classes = (PINVAS_OT_get_pro,)
+class PinvasPreferences(bpy.types.AddonPreferences):
+    bl_idname = __package__
+
+    def draw(self, _context):
+        self.layout.operator("pinvas.get_pro", icon='URL')
+
+
+classes = (PINVAS_OT_get_pro, PinvasPreferences)
 
 
 def draw(layout):

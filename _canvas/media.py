@@ -16,7 +16,7 @@ STILLS = ('.png', '.jpg', '.jpeg', '.jp2', '.j2c', '.bmp', '.tga', '.tif', '.tif
 FULL = (0.0, 0.0, 1.0, 1.0)
 LINEAR_FORMATS = {'SRGB8_A8', 'RGBA16F', 'RGBA32F', 'RGB16F', 'RGB32F', 'R16F', 'R32F', 'RG16F', 'RG32F'}
 VERTEX = '\nvoid main()\n{\n    uv_interp = uv;\n    gl_Position = ModelViewProjectionMatrix * vec4(pos, 0.0, 1.0);\n}\n'
-FRAGMENT = '\nfloat to_display(float c)\n{\n    return c <= 0.0031308 ? 12.92 * c : 1.055 * pow(c, 1.0 / 2.4) - 0.055;\n}\n\nfloat to_linear(float c)\n{\n    return c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4);\n}\n\nvoid main()\n{\n    vec4 c = texture(image, uv_interp);\n    vec3 rgb = c.rgb;\n    if (premultiplied == 1 && c.a > 0.0) {\n        rgb /= c.a;\n    }\n    /* The picture as it is seen (display values): the looks below work on what the eye judges. */\n    if (linear_in == 1) {\n        rgb = vec3(to_display(max(rgb.r, 0.0)), to_display(max(rgb.g, 0.0)), to_display(max(rgb.b, 0.0)));\n    }\n    if (grey == 1) {\n        rgb = vec3(dot(rgb, vec3(0.2126, 0.7152, 0.0722)));\n    }\n    if (display_out == 0) {\n        rgb = vec3(to_linear(max(rgb.r, 0.0)), to_linear(max(rgb.g, 0.0)), to_linear(max(rgb.b, 0.0)));\n    }\n    float a = c.a * opacity;\n    FragColor = vec4(rgb * a, a);\n}\n'
+FRAGMENT = '\nfloat to_display(float c)\n{\n    return c <= 0.0031308 ? 12.92 * c : 1.055 * pow(c, 1.0 / 2.4) - 0.055;\n}\n\nfloat to_linear(float c)\n{\n    return c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4);\n}\n\nvoid main()\n{\n    vec4 c = texture(image, uv_interp);\n    vec3 rgb = c.rgb;\n    if (premultiplied_in == 1 && c.a > 0.0) {\n        rgb /= c.a;\n    }\n    /* The picture as it is seen (display values): the looks below work on what the eye judges. */\n    if (linear_in == 1) {\n        rgb = vec3(to_display(max(rgb.r, 0.0)), to_display(max(rgb.g, 0.0)), to_display(max(rgb.b, 0.0)));\n    }\n    if (grey == 1) {\n        rgb = vec3(dot(rgb, vec3(0.2126, 0.7152, 0.0722)));\n    }\n    if (display_out == 0) {\n        rgb = vec3(to_linear(max(rgb.r, 0.0)), to_linear(max(rgb.g, 0.0)), to_linear(max(rgb.b, 0.0)));\n    }\n    float a = c.a * opacity;\n    FragColor = vec4(rgb * a, a);\n}\n'
 _shader = []
 _failed = set()
 _pixels = {}
@@ -162,7 +162,7 @@ def shader():
         info.push_constant('FLOAT', 'opacity')
         info.push_constant('INT', 'linear_in')
         info.push_constant('INT', 'display_out')
-        info.push_constant('INT', 'premultiplied')
+        info.push_constant('INT', 'premultiplied_in')
         info.push_constant('INT', 'grey')
         info.sampler(0, 'FLOAT_2D', 'image')
         info.fragment_out(0, 'VEC4', 'FragColor')
@@ -204,7 +204,7 @@ def draw_picture(image, corners, uvs, opacity=1.0, display_out=True, grey=False,
     s.uniform_float('opacity', opacity)
     s.uniform_int('linear_in', 1 if linear_in(image, tex) else 0)
     s.uniform_int('display_out', 1 if display_out else 0)
-    s.uniform_int('premultiplied', 1 if getattr(image, 'alpha_mode', 'STRAIGHT') == 'PREMUL' else 0)
+    s.uniform_int('premultiplied_in', 1 if getattr(image, 'alpha_mode', 'STRAIGHT') == 'PREMUL' else 0)
     s.uniform_int('grey', 1 if grey else 0)
     s.uniform_sampler('image', tex)
     batch.draw(s)

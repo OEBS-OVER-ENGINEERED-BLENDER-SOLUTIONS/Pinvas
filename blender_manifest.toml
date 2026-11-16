@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
 id = "pinvas_free"
-version = "1.0.0"
+version = "1.0.1"
 name = "Pinvas"
 tagline = "Drop reference pictures on a board in the 3D View sidebar"
 maintainer = "OEBS Studios"
@@ -9,7 +9,7 @@ type = "add-on"
 
 tags = ["3D View", "User Interface"]
 
-blender_version_min = "5.0.0"
+blender_version_min = "4.5.0"
 
 license = ["SPDX:GPL-3.0-or-later"]
 copyright = ["2026 OEBS Studios"]

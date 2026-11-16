@@ -6,7 +6,7 @@ their own. A product bundles its own copy (as `<addon>/_canvas`) and subclasses 
 A product may bind its board class when its module is imported (`@bind` on the class), so its boards can be made before
 the add-on registers.
 """
-__version__ = "0.5.3"
+__version__ = "0.5.4"
 
 from .board import Board                                  # noqa: E402
 from .layer import Item, prop                             # noqa: E402
