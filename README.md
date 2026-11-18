@@ -6,7 +6,7 @@ A reference board inside Blender. Drop, paste or import pictures onto a board in
 
 ## What it does
 
-- **Put pictures on the board:** drop picture files from your file manager, press **Ctrl+V** over the board to paste a screenshot or a copied picture, or click **Import**.
+- **Put pictures on the board:** drop picture files from your file manager, paste picture file paths with **Ctrl+V**, or click **Import**. On Windows, you can also paste screenshots, copied bitmap images and files copied in your file manager. On macOS and Linux, clipboard paste supports file paths copied as text; save screenshots or copied images to a file and use **Import** or drag-and-drop.
 - **Arrange them:** select, move, scale and turn pictures with the mouse, or with **G**, **S** and **R** as elsewhere in Blender. **X** takes a picture off the board, and **Ctrl+Z** brings it back.
 - **Tidy the board:** **Ctrl+P** packs the pictures into one tight block, shaped to fit the board.
 - **Greyscale and see-through:** judge values in greys, or compare one picture over another, from the right-click **Appearance** menu.
