@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
 id = "pinvas_free"
-version = "1.0.1"
+version = "1.0.2"
 name = "Pinvas"
 tagline = "Drop reference pictures on a board in the 3D View sidebar"
 maintainer = "OEBS Studios"

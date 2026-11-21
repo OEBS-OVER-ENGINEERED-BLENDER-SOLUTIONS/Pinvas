@@ -80,6 +80,13 @@ def tag_redraw(context):
         context.area.tag_redraw()
 
 
+def chosen_paths(directory, files):
+    """The full paths of the files an operator was handed (Import's file window or a drop). Blender 4.5 hands a dropped file's name
+    as '//name', which os.path.join would read as a root and so lose the folder."""
+    names = (f.name[2:] if f.name.startswith('//') else f.name for f in files)
+    return [os.path.join(directory, name) for name in names if name]
+
+
 def add_paths(operator, context, paths, at=None, relative=True):
     loaded, problems = [], []
     for path in paths:
@@ -140,7 +147,7 @@ class PINVAS_OT_import_media(bpy.types.Operator):
         return {'RUNNING_MODAL'}
 
     def execute(self, context):
-        paths = [os.path.join(self.directory, f.name) for f in self.files if f.name]
+        paths = chosen_paths(self.directory, self.files)
         return add_paths(self, context, paths, getattr(self, 'drop_at', None), self.relative_path)
 
 
@@ -208,7 +215,7 @@ class PINVAS_OT_drop_media(bpy.types.Operator):
         return self.execute(context)
 
     def execute(self, context):
-        paths = [os.path.join(self.directory, f.name) for f in self.files if f.name]
+        paths = chosen_paths(self.directory, self.files)
         return add_paths(self, context, paths, getattr(self, 'drop_at', None), self.relative_path)
 
 

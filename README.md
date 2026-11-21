@@ -19,7 +19,7 @@ Boards are saved inside your .blend file.
 
 Requires Blender 4.5 or newer (tested on 4.5, 5.0, 5.1, 5.2 and 5.3).
 
-1. Download `Pinvas-v1.0.1.zip` from the [latest release](https://github.com/OEBS-OVER-ENGINEERED-BLENDER-SOLUTIONS/Pinvas/releases/latest). Leave it zipped.
+1. Download `Pinvas-v1.0.2.zip` from the [latest release](https://github.com/OEBS-OVER-ENGINEERED-BLENDER-SOLUTIONS/Pinvas/releases/latest). Leave it zipped.
 2. In Blender, open **Edit > Preferences > Get Extensions**, open the menu at the top right and choose **Install from Disk...**.
 3. Choose the ZIP. Blender installs and enables **Pinvas**.
 
